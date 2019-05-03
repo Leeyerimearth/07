@@ -165,22 +165,15 @@ public class UserController {
 		
 		System.out.println("/user/listUser : GET / POST");
 		
-		
+		System.out.println("listUser controller before search "+search);
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);
 		}
 		search.setPageSize(pageSize);
-		System.out.println(search.getSearchKeyword()+"키워드");
-		//Search originSearch = search; // 수정
-		
-		//if(search.getSearchKeyword()!=null)
-			//search.setSearchKeyword("%"+search.getSearchKeyword()+"%");
-		//System.out.println(search.getSearchKeyword()+"서치키워드1");
 		
 		// Business logic 수행
 		Map<String , Object> map=userService.getUserList(search);
-		
-		//search.setSearchKeyword(search.getSearchKeyword().substring(1, search.getSearchKeyword().length()-1));
+		System.out.println("listUser controller after search "+search);
 		
 		
 		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
