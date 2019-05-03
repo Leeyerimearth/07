@@ -43,11 +43,10 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	public List<User> getUserList(Search search) throws Exception {
-		Search likeSearch = search;
+		System.out.println("listUser daoImpl before search "+search);
 		
-		if(likeSearch.getSearchKeyword()!=null)
-			likeSearch.setSearchKeyword("%"+likeSearch.getSearchKeyword()+"%");
-		return sqlSession.selectList("UserMapper.getUserList", likeSearch);
+
+		return sqlSession.selectList("UserMapper.getUserList", search);
 	}
 
 	// 게시판 Page 처리를 위한 전체 Row(totalCount)  return
