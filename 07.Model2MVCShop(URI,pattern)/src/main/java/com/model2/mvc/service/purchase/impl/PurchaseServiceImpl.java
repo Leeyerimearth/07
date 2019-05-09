@@ -44,7 +44,8 @@ public class PurchaseServiceImpl  implements PurchaseService{
 	public void addPurchase(Purchase purchase) throws Exception {
 		// TODO Auto-generated method stub
 		purchaseDao.insertPurchase(purchase);
-		productDao.updateQuantity(purchase.getPurchaseProd());
+		productDao.updateSaleQuantity(purchase.getPurchaseProd(),purchase.getBuyQuantity());
+		productDao.updateQuantity(purchase.getPurchaseProd(),purchase.getBuyQuantity());
 		
 	}
 

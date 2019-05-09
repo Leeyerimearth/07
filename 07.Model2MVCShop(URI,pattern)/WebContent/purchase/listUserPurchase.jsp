@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=euc-kr" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%--
 <%@ page import="java.util.*"  %>
@@ -70,7 +71,9 @@
 		<td class="ct_line02"></td>
 		<td class="ct_list_b" width="150">제품명</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">가 격</td>
+		<td class="ct_list_b" width="150">총 구매가격</td>
+		<td class="ct_line02"></td>
+		<td class="ct_list_b">구매 개수</td>
 		<td class="ct_line02"></td>
 		<td class="ct_list_b">구매일</td>
 		<td class="ct_line02"></td>
@@ -112,7 +115,11 @@
 			${purchase.purchaseProd.prodName}
 		</td>
 		<td></td>
-		<td align="left">${purchase.purchaseProd.price}</td>
+		<td align="left">
+		<fmt:formatNumber value="${purchase.purchaseProd.price}" groupingUsed="true"/>
+		</td>
+		<td></td>
+		<td align="left">${purchase.buyQuantity}</td>
 		<td></td>
 		<td align="left">${purchase.orderDate}</td>
 		<td></td>

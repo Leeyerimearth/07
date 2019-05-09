@@ -40,7 +40,7 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping(value="addPurchase",method=RequestMethod.POST)
-	public String addPurchase(HttpSession session,@RequestParam("quantity") int quantity,
+	public String addPurchase(HttpSession session,
 								@ModelAttribute("purchase") Purchase purchase,Model model) throws Exception
 	{
 		System.out.println("/purchase/addPurchase POST¹æ½Ä");
@@ -48,7 +48,7 @@ public class PurchaseController {
 		User user = (User) session.getAttribute("user");
 		Product product = (Product) session.getAttribute("vo");
 		
-		product.setQuantity(quantity);
+		//product.setQuantity(quantity);
 		purchase.setBuyer(user);
 		purchase.setPurchaseProd(product);
 		

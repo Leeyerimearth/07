@@ -1,5 +1,6 @@
 package com.model2.mvc.web.product;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -58,44 +59,11 @@ public class ProductController {
 		System.out.println("/product/getProduct");
 		
 		Product vo = productService.getProduct(Integer.parseInt(prodNo));
-		
-		String cookieString = "";
-		int count=0;
-		
-		if(request.getCookies()!=null) // cookie가 널이 아닐때 하면안된다. cookie는 null이 아니다.
-		{
-			Cookie[] cookieJar = request.getCookies();
-			for(int i=0 ; i<cookieJar.length; i++)
-			{
-				Cookie cookie = cookieJar[i];
-				if(cookie.getName().equals("history")) // history cookie가 있을때,
-				{
-					cookieString = cookie.getValue()+","+prodNo;
-					
-				}
-				else // cookie는 있지만, history cookie가 없을때.
-				{
- 					count++;
-				}
-			}
-			
-			if(count==cookieJar.length)
-			{
-				cookieString =prodNo;
-			}
-			
-		}
-		else // history는 물론 아예 쿠키가 0일때.
-		{
-			cookieString = prodNo; // cookieString에다가 첫 prodNo를 더한다.
-		}
-		Cookie cookie = new Cookie("history",cookieString);
-		cookie.setMaxAge(-1);
-		cookie.setPath("/"); //전체 경로에 저장.
-		response.addCookie(cookie);
-		
 
+		String cookieString =this.addCookie(prodNo, request, response); // addCookie method화
+		
 		System.out.println(cookieString);
+		
 		session.setAttribute("vo", vo);
 		String menu = (String) session.getAttribute("menu");
 		System.out.println(menu);
@@ -179,5 +147,54 @@ public class ProductController {
 
 			return "forward:/product/listProduct2.jsp"; //판매상품관리로 forward
 	}
+	
+	@RequestMapping("bestSellerList")
+	public String bestSellerList(Model model)
+	{
+		
+		System.out.println("/product/bestSellerList");
+		
+		// search 필요없다.페이지는 무조건 1개로 놓을거기 때문에.
+		
+		List<Product> list = productService.getBestSellerList();
+		
+		model.addAttribute("list", list);
+		
+		return "forward:/product/bestSellerList.jsp";
+	}
+	
+	
+	private String addCookie(String prodNo,HttpServletRequest request,HttpServletResponse response)
+	{
+		String cookieString = "";
+		int count=0;
+		
+		if(request.getCookies()!=null) // cookie가 널이 아닐때 하면안된다. cookie는 null이 아니다.
+		{
+			Cookie[] cookieJar = request.getCookies();
+			for(int i=0 ; i<cookieJar.length; i++)
+			{
+				Cookie cookie = cookieJar[i];
+				if(cookie.getName().equals("history")) // history cookie가 있을때,
+					cookieString = cookie.getValue()+","+prodNo;	
+				else // cookie는 있지만, history cookie가 없을때.
+ 					count++;
+			}
+			if(count==cookieJar.length)
+				cookieString =prodNo;
+			
+		}
+		else // history는 물론 아예 쿠키가 0일때.
+		{
+			cookieString = prodNo; // cookieString에다가 첫 prodNo를 더한다.
+		}
+		Cookie cookie = new Cookie("history",cookieString);
+		cookie.setMaxAge(-1);
+		cookie.setPath("/"); //전체 경로에 저장.
+		response.addCookie(cookie);
+		
+		return cookieString;
+	}
+	
 	
 }

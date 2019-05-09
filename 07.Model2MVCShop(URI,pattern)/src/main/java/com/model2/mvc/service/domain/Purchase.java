@@ -17,7 +17,17 @@ public class Purchase {
 	private String receiverPhone;//
 	private String tranCode; //add에서 셋 등 .상황에따라
 	private int tranNo; //자동
+	private int buyQuantity;
 	
+	/////////////////////////////////////////////////////////////////(추가)
+	public int getBuyQuantity() {
+		return buyQuantity;
+	}
+
+	public void setBuyQuantity(int buyQuantity) {
+		this.buyQuantity = buyQuantity;
+	}
+	////////////////////////////////////////////////////////////////////////
 	public Purchase(){
 	}
 	

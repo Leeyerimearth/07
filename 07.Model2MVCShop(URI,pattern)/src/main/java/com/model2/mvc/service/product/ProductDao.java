@@ -17,10 +17,13 @@ public interface ProductDao {
 	
 	public void insertProduct(Product product);
 	
-	public void updateQuantity(Product product);
+	public void updateQuantity(Product product,int buyQuantity);
 	
 	public void updateProduct(Product product);
 	
+	public void updateSaleQuantity(Product product, int saleQuantity);
+	
 	public int getTotalCount(Search search) throws Exception ;
-
+	
+	public List<Product> getBestSellerList();
 }

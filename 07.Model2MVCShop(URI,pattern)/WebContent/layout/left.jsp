@@ -85,6 +85,15 @@ function history(){
 <tr>
 	<td valign="top"> 
 		<table  border="0" cellspacing="0" cellpadding="0" width="159">
+			<c:if test="${!empty user && user.role == 'user' }">
+				
+			<tr>
+				<td class="Depth03">
+					<a href="/product/bestSellerList" target="rightFrame">베스트 top 10</a>
+				</td>
+			</tr>
+			
+			</c:if>
 			<tr>
 				<td class="Depth03">
 					<a href="/product/listProduct?menu=search" target="rightFrame">상 품 검 색</a>

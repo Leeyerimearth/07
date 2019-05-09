@@ -18,6 +18,7 @@
 		<result property="divyDate" column="dlvy_date" jdbcType="DATE"/>
 		<result property="buyer.userId"	column="buyer_id" jdbcType="VARCHAR" />
 		<result property="purchaseProd.prodNo" column="prod_no" jdbcType="NUMERIC"/>	
+		<result property="buyQuantity"	column="buy_quantity" jdbcType="NUMERIC"/>
 	</resultMap>
 	
 	<resultMap id="productSelectMap"  type="product">
@@ -89,7 +90,7 @@
 			   '004',
 			   SYSDATE,
 			   #{divyDate:VARCHAR},
-			   #{purchaseProd.quantity:NUMERIC})
+			   #{buyQuantity:NUMERIC})
 	</insert>
 	
 	<update id="updatePurchase" parameterType="purchase">

@@ -146,7 +146,7 @@ function fncAddPurchase() {
 		<td width="104" class="ct_write">구매 개수</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" name="quantity" 	class="ct_input_g" 
+			<input type="text" name="buyQuantity" 	class="ct_input_g" 
 						style="width: 100px; height: 19px" maxLength="20" value="" />
 		</td>
 	</tr>

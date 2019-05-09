@@ -51,10 +51,7 @@ public class UserDaoImpl implements UserDao{
 
 	// 게시판 Page 처리를 위한 전체 Row(totalCount)  return
 	public int getTotalCount(Search search) throws Exception {
-		Search likeSearch = search;
 		
-		if(likeSearch.getSearchKeyword()!=null)
-			likeSearch.setSearchKeyword("%"+likeSearch.getSearchKeyword()+"%");
-		return sqlSession.selectOne("UserMapper.getTotalCount", likeSearch);
+		return sqlSession.selectOne("UserMapper.getTotalCount", search);
 	}
 }
