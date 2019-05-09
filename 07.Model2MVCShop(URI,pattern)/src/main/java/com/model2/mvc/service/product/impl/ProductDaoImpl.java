@@ -59,10 +59,10 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public void updateQuantity(Product product) { // HashMap map) {
+	public void updateQuantity(Product product,int buyQuantity) { // HashMap map) {
 		
 		Product getProduct=this.findProduct(product.getProdNo());
-		int prodQuantity = getProduct.getQuantity() - product.getQuantity();
+		int prodQuantity = getProduct.getQuantity() - buyQuantity;//product.getQuantity();
 		
 		HashMap<String,Integer> map = new HashMap<String,Integer>();
 		map.put("prodQuantity", prodQuantity);
@@ -85,6 +85,22 @@ public class ProductDaoImpl implements ProductDao {
 		// TODO Auto-generated method stub
 		//search.setSearchKeyword("%"+search.getSearchKeyword()+"%");
 		return sqlSession.selectOne("ProductMapper.getTotalCount",search);
+	}
+
+	@Override
+	public void updateSaleQuantity(Product product,int saleQuantity) {
+		// TODO Auto-generated method stub
+		HashMap<String,Integer> map = new HashMap<String,Integer>();
+		map.put("saleQuantity",saleQuantity);
+		map.put("prodNo", product.getProdNo());
+		sqlSession.update("ProductMapper.updateSaleQuantity",map);
+	}
+
+	@Override
+	public List<Product> getBestSellerList() {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.selectList("ProductMapper.getBestSellerList");
 	}
 
 }

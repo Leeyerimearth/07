@@ -149,11 +149,7 @@ function resetData(){
 						style="width: 100px; height: 19px" maxLength="10">&nbsp;개  *(999개까지 입력가능합니다.)
 		</td>
 	</tr>
-	
-	
-	
-	
-	
+
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>

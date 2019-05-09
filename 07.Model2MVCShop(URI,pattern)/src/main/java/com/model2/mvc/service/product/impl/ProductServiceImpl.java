@@ -80,4 +80,12 @@ public class ProductServiceImpl implements ProductService {
 		return map;
 	}
 
+	@Override
+	public List<Product> getBestSellerList() {
+		// TODO Auto-generated method stub
+		List<Product> list = productDao.getBestSellerList();
+		
+		return list;
+	}
+
 }

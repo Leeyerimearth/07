@@ -15,6 +15,7 @@
 		<result property="prodNo" 			column="prod_no" 		jdbcType="NUMERIC" />
 		<result property="regDate"			column="reg_date" 			jdbcType="DATE" />
 		<result property="quantity" 		column="quantity" 			jdbcType="NUMERIC"  />
+		<result property="saleQuantity"  	column="sale_quantity"      jdbcType="NUMERIC"/>
 	</resultMap>
 
 	<select id="findProduct" parameterType="int" resultMap="productSelectMap">
@@ -42,6 +43,12 @@
 	<update id="updateQuantity" parameterType="hashmap">
 		UPDATE product
 		SET quantity=#{prodQuantity}
+		WHERE prod_no = #{prodNo}
+	</update>
+	
+	<update id="updateSaleQuantity"  parameterType="hashmap">
+		UPDATE product
+		SET sale_quantity = #{saleQuantity}
 		WHERE prod_no = #{prodNo}
 	</update>
  
@@ -78,6 +85,13 @@
 							ORDER BY prod_no )inner_table
 				   WHERE ROWNUM &lt;= #{endRowNum})
 		    WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
+	</select>
+	
+	<select id="getBestSellerList" resultMap="productSelectMap">
+		SELECT * 
+		FROM (SELECT * FROM product
+				  ORDER BY sale_quantity DESC NULLS LAST)inner_table
+		WHERE ROWNUM &lt;=10;		  
 	</select>
 	
 	<select  id="getTotalCount"  parameterType="search"	 resultType="int">

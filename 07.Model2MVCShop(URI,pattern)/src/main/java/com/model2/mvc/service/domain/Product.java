@@ -14,7 +14,17 @@ public class Product {
 	private Date regDate;
 	private String proTranCode;
 	private int quantity;
+	private int saleQuantity;
 	
+//////////////////////////////////////////////////////////제품 총 판매 개수 추가	
+	public int getSaleQuantity() {
+		return saleQuantity;
+	}
+
+	public void setSaleQuantity(int saleQuantity) {
+		this.saleQuantity = saleQuantity;
+	}
+///////////////////////////////////////////////////////////////////
 	public Product(){
 	}
 	
